@@ -77,4 +77,18 @@
     window.location.href = href;
     showNote("Opening your email app. You can also write treatolghana@gmail.com.");
   });
+
+  document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+    const stage = gallery.querySelector("[data-stage]");
+    gallery.querySelectorAll("[data-thumb]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        stage.src = btn.getAttribute("data-thumb");
+        const alt = btn.getAttribute("data-alt");
+        if (alt) stage.alt = alt;
+        gallery.querySelectorAll("[data-thumb]").forEach((other) => {
+          other.classList.toggle("is-active", other === btn);
+        });
+      });
+    });
+  });
 })();
